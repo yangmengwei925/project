@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>核稿</title>
+    <script type="text/javascript">
+        function AfterDocumentOpened() {
+            document.getElementById("PageOfficeCtrl1").SetEnableFileCommand(3, false);
+        }
+        function Save() {
+            document.getElementById("PageOfficeCtrl1").WebSave();
+            //将清稿后的文件转成pdf另存一份
+            document.getElementById("PageOfficeCtrl1").WebSaveAsPDF();
+        }
+       function accept(){
+           //遍历删除word中键盘批注
+           function  deleteAllComments(){
+               var docObj = document.getElementById("PageOfficeCtrl1").Document;
+               for(var i=docObj .Comments.Count; i>=1; i--){
+                   docObj .Comments(i).Delete();
+               }
+           }
+           //接受文档中的所有修订
+           document.getElementById("PageOfficeCtrl1").Document.Revisions.AcceptAll();
+           
+       }
+    </script>
+</head>
+<body>
+<div>
+    <div style="width: auto; height: 800px;">
+        ${pageoffice}
+    </div>
+</div>
+</body>

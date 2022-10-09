@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <meta name="HandheldFriendly" content="true">
+    <title>XX办公系统</title>
+    <link rel="stylesheet" href="/assets/mobile/css/frozenui.css">
+    <link rel="stylesheet" href="/assets/mobile/css/style.css">
+    <script type="text/javascript" language="javascript" src="/moboffice.js" id="mob_js_main"></script>
+</head>
+<body ontouchstart>
+<section class="ui-container">
+    <section id="list">
+        <div class="demo-item">
+            <div class="demo-block">
+                <section class="ui-panel ui-panel-center ui-border-tb" style="height:55px;">
+                    <i class="ui-icon-return" style="display:inline-block;position: relative;">
+                        <image style="border:0;position:absolute;top:50%;margin-top: -40px; width:24px; height:24px;margin-left:10px;" src="/assets/mobile/img/back32.png" onclick="window.history.back();" /></i>
+                    <h2 style="display:inline-block;width:80%;text-align:center;margin-left:30px;font-weight:bold;" >待办文档</h2>
+                </section>
+                    <#if (docStatus == '起草') || (docStatus == '核稿')>
+                        <div class="ui-tooltips ui-tooltips-warn">
+                            <div class="ui-tooltips-cnt ui-border-b">
+                                <i></i>演示程序处于“${docStatus}”环节，请在PC端操作。<a class="ui-icon-close" onclick="this.parentNode.parentNode.style.display='none';"></a>
+                            </div>
+                        </div>
+                    </#if>
+
+                    <#if docStatus == '盖章'>
+                        <div class="ui-tooltips ui-tooltips-warn">
+                            <div class="ui-tooltips-cnt ui-border-b">
+                                <i></i>印章用户名：李志 密码：123456<a class="ui-icon-close" onclick="this.parentNode.parentNode.style.display='none';"></a>
+                            </div>
+                        </div>
+        </#if>
+            </div>
+        </div>
+        <!-- 单行小图 -->
+        <div class="demo-item">
+            <p class="demo-desc">待批文档</p>
+            <div class="demo-block">
+
+                    <#if docStatus == '批阅'>
+                        <ul class="ui-list ui-list-single ui-list-link ui-border-tb">
+                            <li>
+                                <div class="ui-list-thumb-s ui-border-t">
+                                    <span style="background-image:url(/assets/mobile/img/word.png)"></span>
+                                </div>
+                                <div class="ui-list-info">
+                                    <h4 class="ui-nowrap" onclick="MobAPP.openWindow('/mobile/opendoc?id=${doc.id}&type=word&userName=${userName}');">${doc.subject}</h4>
+
+                                </div>
+                            </li>
+                        </ul>
+
+                    <#else>
+                        <ul class="ui-list ui-list-single ui-border-tb">
+                            <li>
+                                <div class="ui-list-thumb-s ui-border-t">
+
+                                </div>
+                                <div class="ui-list-info">
+                                    <h4 >暂无待批文档</h4>
+
+                                </div>
+                            </li>
+                        </ul>
+                </#if>
+            </div>
+        </div>
+
+        <div class="demo-item">
+            <p class="demo-desc">待盖章文档</p>
+            <div class="demo-block">
+
+                    <#if docStatus == '盖章'>
+                        <ul class="ui-list ui-list-single ui-list-link ui-border-tb">
+                            <li>
+                                <div class="ui-list-thumb-s ui-border-t">
+                                    <span style="background-image:url(/assets/mobile/img/pdf.png)"></span>
+                                </div>
+                                <div class="ui-list-info">
+                                    <h4 class="ui-nowrap" onclick="MobAPP.openWindow('/mobile/opendoc?id=${doc.id}&type=pdf&mode=normal&userName=${userName}');" >${doc.subject}</h4>
+
+                                </div>
+                            </li>
+
+                        </ul>
+                <#else>
+
+                        <ul class="ui-list ui-list-single ui-border-tb">
+                            <li>
+                                <div class="ui-list-thumb-s ui-border-t">
+                                </div>
+                                <div class="ui-list-info">
+                                    <h4 >暂无待盖章文档</h4>
+                                </div>
+                            </li>
+                        </ul>
+            </#if>
+            </div>
+        </div>
+    </section>
+
+</section>
+</body>
+</html>

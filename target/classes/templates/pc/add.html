@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="renderer" content="webkit">
+    <title></title>
+    <link rel="stylesheet" href="/assets/pc/css/pintuer.css">
+    <link rel="stylesheet" href="/assets/pc/css/admin.css">
+    <script src="/assets/pc/js/jquery.js"></script>
+    <script src="/assets/pc/js/pintuer.js"></script>
+    <script type="text/javascript">
+          //检查“份数”是否是正整数
+          function check() {
+              var copies=document.getElementById("Copies").value;
+              var reg="^\\d+$";
+              if(copies.match(reg)!=null){
+                  document.getElementById("addForm").submit();
+              }else{
+                  alert("'抄送份数'项只能填入正整数！");
+                  return false;
+              }
+          }
+
+          function  canSubmit(hasDoc) {
+              if(hasDoc){
+                  alert("当前演示程序中已经起草了一份文档，不支持起草第二份文件！");
+                  return false;
+              }
+              return true;
+          }
+    </script>
+</head>
+<body>
+<div class="panel admin-panel">
+    <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>起草文档</strong></div>
+    <div class="body-content">
+        <form id="addForm" method="post" class="form-x" action="/pc/addDoc" onsubmit="return check();">
+            <div class="form-group">
+                <div class="label">
+                    <label>文件名称：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50"  value="公司安全生产重要通知"  name="Subject" id="Subject"
+                           data-validate="required:请输入文件名称"/>
+                    <div class="tips"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="label">
+                    <label>标题：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50"  value="安全生产责任制"  name="Title" id="Title"
+                           data-validate="required:请输入文件标题"/>
+                    <div class="tips"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label>发文号：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="001" id="DocNo" name="DocNo"
+                           data-validate="required:请输入发文号"/>
+                    <div class="tips"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label>发文单位：</label>
+                </div>
+                <div class="field">
+                    <select name="IssueDept" id="IssueDept" class="input w50">
+                        <option value="总部">总部</option>
+                        <option value="技术部">技术部</option>
+                        <option value="商务部">商务部</option>
+                    </select>
+                    <div class="tips"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label>主题词：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="安全、生产、责任" name="TopicWords" id="TopicWords"
+                           data-validate="required:请输入主题词"/>
+                    <div class="tips"></div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="label">
+                    <label>日期：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" name="IssueDate" id="IssueDate" value="${nowDate}" disabled="disabled"/>
+                    <div class="tips"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label>抄送份数：</label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input w50" value="5" name="Copies" id="Copies"
+                           data-validate="required:请输入抄送份数" />
+                    <div class="tips"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label>模板：</label>
+                </div>
+                <div class="field">
+                    <select name="templateName" id="templateName" class="input w50">
+                        <option value="template1.docx">红头模板</option>
+                        <option value="template2.docx">普通模板</option>
+                    </select>
+                    <div class="tips"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label">
+                    <label></label>
+                </div>
+                <div class="field">
+                    <button class="button bg-main icon-check-square-o" onclick="return canSubmit('${hasDoc}')" type="submit"> 提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+</script>
+</body>
+</html>

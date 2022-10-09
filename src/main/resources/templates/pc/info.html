@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>Demo说明</title>  
+    <link rel="stylesheet" href="/assets/pc/css/pintuer.css">
+    <link rel="stylesheet" href="/assets/pc/css/admin.css">
+    <link rel="stylesheet" href="/assets/pc/css/ystep.css" type="text/css" />
+    <script src="/assets/pc/js/jquery.js"></script>
+    <script src="/assets/pc/js/pintuer.js"></script>
+    <script type="text/javascript" src="/assets/pc/js/ystep.js"></script>
+</head>
+<body>
+<div class="panel admin-panel">
+  <div class="panel-head"><strong><span class="icon-pencil-square-o"></span> Demo说明</strong></div>
+  <div class="body-content">
+    <form method="post" class="form-x" action="">
+      <div class="form-group">
+        <div style="text-align: center;">
+            <div class="ystep4" style="margin: 60px;"></div>
+            <p>这是一个简单的Demo项目，模拟Word文件在办公系统中的主要流转环节，<span style="color:red;">并不意味着PageOffice产品只能支持这样的文档处理流程。</span><br/>
+            PageOffice产品只提供文档在线处理的功能，包括：打开、编辑、保存、动态填充、文档合并、套红、留痕、盖章等上百项功能（详细请参考<br/>
+                PageOffice产品开发包中的示例），不提供流程控制功能，所以不管开发什么样的Web系统，只要是需要在线处理Office文档，都可以根据<br/>
+                自己的项目需要，调用PageOffice产品相应的功能即可。<b>注意：为了简化代码逻辑，此演示程序只能创建一个文档进行流转。</b>
+            </p>
+        </div>
+
+      </div>
+     
+    </form>
+  </div>
+</div>
+
+<script type="text/javascript">
+    //根据jQuery选择器找到需要加载ystep的容器
+    //loadStep 方法可以初始化ystep
+    $(".ystep4").loadStep({
+        size: "large",
+        color: "blue",
+        steps: [{
+            title: "张三起草文件",
+            content: "张三起草文件"
+        },{
+            title: "李总、王总审批",
+            content: "李总、王总审批"
+        },{
+            title: "赵六核稿",
+            content: "赵六核稿"
+        },{
+            title: "李总、王总盖章",
+            content: "李总、王总盖章"
+        },{
+            title: "正式发文",
+            content: "所有人都可以查看"
+        }]
+    });
+
+    $(".ystep4").setStep(${step});
+
+</script>
+</body></html>
